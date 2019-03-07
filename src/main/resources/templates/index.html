@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<div th:each="author : ${authors}">
+    <h2 th:text="${author.name}"></h2>
+    <h4 th:inline="text">The author currently lives in [[${author.city}]]</h4>
+
+    <h4>List of books by this author:</h4>
+    <ul>
+        <th block   th:each="book : ${author.books}">
+            <li th:inline="text">Title: [[${book.title}]]</li>
+            <li th:inline="text">Genre: [[${book.genre}]]</li>
+            <li th:inline="text">Publisher: [[${book.publisher}]]</li>
+
+        </th>
+
+
+    </ul>
+</div>
+
+</body>
+</html>
