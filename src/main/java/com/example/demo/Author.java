@@ -14,15 +14,15 @@ public class Author {
 //    @ManyToMany
 //    private Set<Book> books;
     @OneToMany(mappedBy = "book")
-    private Set<Book> books;
+    private Set<BooksAndAuthors> books;
 
     public Author(){
-        books = new HashSet<Book>();
+        books = new HashSet<>();
 
     }
 
     public Author(String name, String city) {
-        books = new HashSet<Book>();
+        books = new HashSet<>();
 //        this.name = name;
         this.setName(name);
 //        this.city = city;
@@ -53,11 +53,11 @@ public class Author {
         this.city = city;
     }
 
-    public Set<Book> getBooks() {
+    public Set<BooksAndAuthors> getBooks() {
         return books;
     }
 
-    public void setBooks(Set<Book> books) {
+    public void setBooks(Set<BooksAndAuthors> books) {
         this.books = books;
     }
 

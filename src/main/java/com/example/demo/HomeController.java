@@ -10,15 +10,20 @@ import java.util.Set;
 
 @Controller
 public class HomeController {
+
     @Autowired
     AuthorRepository authorRepository;
 
     @Autowired
     BookRepository bookRepository;
 
+    @Autowired
+    BooksAndAuthorsRepository booksAndAuthorsRepository;
+
     Author author;
     Book book;
-    Set<Book> books;
+    BooksAndAuthors booksAndAuthors;
+    Set<BooksAndAuthors> books;
 
     @RequestMapping("/")
     public String index(Model model){
@@ -26,10 +31,12 @@ public class HomeController {
         author = new Author("JK Rowling", "London");
         // create a book
         book = new Book("Harry Potter and the Deathly Hollows", "Fiction", "English Book Housing");
+        // create a booksAndAuthors
+        booksAndAuthors = new BooksAndAuthors(author, book);
         // add book to an empty list
-        books = new HashSet<Book>();
+        books = new HashSet<>();
 
-        books.add(book);
+        books.add(booksAndAuthors);
         // save the book to the db
         bookRepository.save(book);
         // add list of books to author's book list
@@ -48,9 +55,13 @@ public class HomeController {
 
         // grab all the authors from db and send to template
         model.addAttribute("authors", authorRepository.findAll());
-        return "index";
+
+        // grab all the books from db and send to template
+        model.addAttribute("books", bookRepository.findAll());
+        return "list";
 
     }
+
 
 
 }

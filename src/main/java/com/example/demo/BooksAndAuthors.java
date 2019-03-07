@@ -21,6 +21,11 @@ public class BooksAndAuthors {
 
     }
 
+    public BooksAndAuthors(@NotNull Author author, @NotNull Book book) {
+        this.author = author;
+        this.book = book;
+    }
+
     public long getId() {
         return id;
     }
